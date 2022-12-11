@@ -31,7 +31,14 @@ def getInformation(numberOfPeople):
     print("Lets get started!")
     while i < numberOfPeople:
         # Ask user for the person's first and last name
-        person = Person(input("What is the person's first and last name?\n"))
+        userInput = input("What is the person's first and last name?\n")
+        
+        # Make sure the user didn't input an empty string
+        if userInput.strip() == "":
+            print("Please enter in a name.")
+            continue
+        else:
+            person = Person(userInput.strip())
 
         # Ask the user if all the information is correct
         validResponse = False
@@ -39,7 +46,9 @@ def getInformation(numberOfPeople):
             print("Is the following information correct (Y/N)?")
             print(" + " + str(person))
             userInput = input()
-            if userInput[0] == "Y" or userInput[0] == "y":
+            if userInput == "":
+                print("Invalid Input")
+            elif userInput[0] == "Y" or userInput[0] == "y":
                 print("Excellent!")
                 people.append(person)
                 validResponse = True
@@ -88,7 +97,12 @@ def printResults(people):
         print(" 1. Show the results in the console")
         print(" 2. Save the results in a file")
         print(" 3. Save a file for each person that is participating with the person they are getting a gift for")
-        resultsOption = int(input())
+        try: 
+            resultsOption = int(input())
+        except:
+            print("Invalid Response. Please try again.")
+            continue
+            
 
         match resultsOption:
             # Print the results to the console
@@ -125,6 +139,7 @@ def printToConsole(people):
 
 # Save the results to a single file
 def printToFile(people):
+    file = None
     # Open/Create the file and put int the results
     # The file will be saved in the current directory in the following naming convention: Results.txt
     try: 
@@ -136,7 +151,9 @@ def printToFile(people):
     except:
         return False
     finally:
-        file.close()
+        if file:
+            # Close the file
+            file.close()
 
     return True
 
@@ -145,6 +162,7 @@ def printToFiles(people):
     # Set the path for where the files are going to go and create the directory
     dirName = "Results"
     parentDir = "./"
+    file = None
     try:
         path = os.path.join(parentDir, dirName)
         # if the directory does not already exist then create it
@@ -166,8 +184,9 @@ def printToFiles(people):
         except:
             return False
         finally:
-            # Close the file
-            file.close()
+            if file:
+                # Close the file
+                file.close()
 
     return True
 
@@ -175,11 +194,15 @@ if __name__ == "__main__" :
     numberOfPeople = 0
     while numberOfPeople <= 1:
         # See how many people are joining the gift exchange
-        numberOfPeople = int (input("How many people are joining the gift exchange?\n"))
+        try:
+            numberOfPeople = int (input("How many people are joining the gift exchange?\n"))
+            # Check that more then one person is participating in the gift exchange.
+            if numberOfPeople <= 1:
+                print("There needs to be more then one person participating in the gift exchange.")
+        except:
+            print("Invalid Response. Please enter an number.")
+            numberOfPeople = 0
         
-        # Check that more then one person is participating in the gift exchange.
-        if numberOfPeople <= 1:
-            print("There needs to be more then one person participating in the gift exchange.")
     # Get everyone's information
     people = getInformation(numberOfPeople)
 
