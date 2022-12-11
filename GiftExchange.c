@@ -84,7 +84,7 @@ void getInformation(Person people[], int numberOfPeople) {
         userInput2[0] = '\0';
 
         // Ask user if all the information is correct
-        int vaildResponse = 0;
+        int validResponse = 0;
         do {
             printf("Is the following information correct (Y/N)?\n + First Name: %s\n + Last Name: %s\n", 
                     people[i].firstName, 
@@ -95,7 +95,7 @@ void getInformation(Person people[], int numberOfPeople) {
             if (userInput1[0] == 'Y' || userInput1[0] == 'y') {
                 printf("Excellent!\n");
                 userInput1[0] = '\0';
-                vaildResponse = 1;
+                validResponse = 1;
                 i++;
                 // If the is another person tell the user that we will move on to the next person
                 if(i < numberOfPeople) {
@@ -105,16 +105,16 @@ void getInformation(Person people[], int numberOfPeople) {
                 printf("Sorry about that lets try again\n");
                 // clear out any old information
                 userInput1[0] = '\0';
-                vaildResponse = 1;
+                validResponse = 1;
                 // Free any mem for the names
                 free(people[i].firstName);
                 free(people[i].lastName);
             } else {
-                printf("Invaild Input\n");
+                printf("Invalid Input\n");
                 // clear out any old information
                 userInput1[0] = '\0';
             }
-        } while (!vaildResponse);
+        } while (!validResponse);
     }
     return;
 }
