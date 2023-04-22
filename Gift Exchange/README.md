@@ -2,13 +2,13 @@
 This program simulates people drawing names from a hat in order to determine who they are exchanging a gift with. The user enters how many people are participating and the first and last name of each person. The program will then match everyone with the person they are going to get a gift for and then print the results. The results are printed to a single file, one file per person, or directly to the console.
 
 ## File structure
-The different programming languages are separated out into different folders. Each folder contains the same program but in a different programming language. The functionality between the different programs will be approximatly the same. If any deltas between the programs exist it will be documented below. 
+The different programming languages are separated out into different folders. Each folder contains the same program but in a different programming language. The functionality between the different programs will be approximately the same. If any deltas between the programs exist it will be documented below. 
 ### Currently Written in
 * C
 * Python
 
-### Curently Working on
-* Writting the program in C++
+### Currently Working on
+* Writing the program in C++
 
 ### Deltas between the functionality
 * The C program currently does not support first or last names with spaces.
