@@ -7,9 +7,6 @@ The different programming languages are separated out into different folders. Ea
 * C
 * Python
 
-### Currently Working on
-* Writing the program in C++
-
 ### Deltas between the functionality
 * The C program currently does not support first or last names with spaces.
 
